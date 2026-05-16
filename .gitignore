@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# agent skills (installed locally, not vendored into the repo)
+/.agents/
+/skills-lock.json
