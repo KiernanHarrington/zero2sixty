@@ -2,22 +2,24 @@
 
 /* ============================================================
    ZERO2SIXTY — Design System
-   Aggressive high-performance braking. Black + electric blue.
+   Motorsport-OEM braking. Near-black, blue-tinted, electric blue.
+   OKLCH throughout; every neutral tinted toward the brand hue (258).
    ============================================================ */
 
 :root {
-  --bg: #050608;
-  --bg-soft: #0a0d14;
-  --panel: #0d111a;
-  --panel-2: #11161f;
-  --line: #1c2433;
-  --fg: #f3f6fb;
-  --muted: #8a93a6;
-  --blue: #1f6bff;
-  --blue-bright: #3d8bff;
-  --cyan: #18d3ff;
-  --danger: #ff3b30;
-  --glow: 0 0 0.5px #3d8bff, 0 0 24px rgba(31, 107, 255, 0.55);
+  --h: 258; /* brand hue */
+  --bg: oklch(0.14 0.012 var(--h));
+  --bg-soft: oklch(0.18 0.014 var(--h));
+  --panel: oklch(0.205 0.015 var(--h));
+  --panel-2: oklch(0.235 0.016 var(--h));
+  --line: oklch(0.3 0.022 var(--h));
+  --fg: oklch(0.97 0.006 var(--h));
+  --muted: oklch(0.66 0.022 var(--h));
+  --blue: oklch(0.58 0.21 var(--h));
+  --blue-bright: oklch(0.68 0.19 256);
+  --cyan: oklch(0.82 0.13 220);
+  --danger: oklch(0.64 0.22 25);
+  --glow: 0 0 0.5px oklch(0.68 0.19 256), 0 0 22px oklch(0.58 0.2 258 / 0.45);
 }
 
 @theme inline {
@@ -239,11 +241,94 @@ body {
   animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
+/* ---------- Hero (motorsport-OEM) ---------- */
+
+/* Orchestrated entrance. Ease-out-expo: precise, no overshoot. */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.reveal {
+  opacity: 0;
+  animation: reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.reveal-1 { animation-delay: 0.05s; }
+.reveal-2 { animation-delay: 0.18s; }
+.reveal-3 { animation-delay: 0.32s; }
+.reveal-4 { animation-delay: 0.46s; }
+
+/* Rotor arrives off-axis and settles to true. Runs once. */
+@keyframes rotor-settle {
+  from {
+    opacity: 0;
+    transform: rotate(-34deg) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+.rotor-settle {
+  animation: rotor-settle 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+/* Slow continuous turn underneath the settle: precision, not flash. */
+@keyframes rotor-idle {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.rotor-idle {
+  animation: rotor-idle 70s linear 1.8s infinite;
+}
+
+/* Photographic legibility scrims. Tinted toward brand hue, never pure black. */
+.hero-scrim {
+  background:
+    linear-gradient(
+      90deg,
+      oklch(0.13 0.014 var(--h) / 0.94) 0%,
+      oklch(0.13 0.014 var(--h) / 0.7) 38%,
+      oklch(0.13 0.014 var(--h) / 0.25) 70%,
+      transparent 100%
+    ),
+    linear-gradient(
+      0deg,
+      oklch(0.13 0.014 var(--h) / 0.85) 0%,
+      transparent 45%
+    );
+}
+
+/* Precise headline. Authority through scale + weight, not glow. */
+.hero-title {
+  font-family: var(--font-display), Impact, sans-serif;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+  font-size: clamp(2.9rem, 7.4vw, 7rem);
+}
+.hero-rule {
+  width: 56px;
+  height: 2px;
+  background: var(--blue-bright);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .spin-slow,
   .spin-fast,
   .marquee,
-  .rise {
+  .rise,
+  .reveal,
+  .rotor-settle,
+  .rotor-idle {
     animation: none;
+  }
+  .reveal {
+    opacity: 1;
   }
 }

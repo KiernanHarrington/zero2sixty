@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CATEGORIES, PRODUCTS } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
 import RotorArt from "@/components/RotorArt";
+import Hero from "@/components/Hero";
 
 const featured = PRODUCTS.filter((p) =>
   ["apex-6-big-brake-kit", "g-slot-2pc-rotor", "rp-race-pads", "monobloc-6-caliper"].includes(
@@ -13,58 +14,18 @@ export default function Home() {
   return (
     <>
       {/* ===== HERO ===== */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 grid-bg" />
-        <div className="absolute inset-0 radial-fade" />
-        <div className="absolute -right-32 top-1/2 -translate-y-1/2 w-[680px] h-[680px] opacity-40 hidden lg:block">
-          <RotorArt className="w-full h-full" spin glow />
-        </div>
+      <Hero />
 
-        <div className="relative mx-auto max-w-7xl px-5 pt-20 pb-24 lg:pt-28 lg:pb-32">
-          <p className="kicker rise">High Performance Braking</p>
-          <h1 className="headline text-6xl sm:text-7xl lg:text-[8.5rem] mt-5 rise">
-            STOP
-            <br />
-            <span className="text-blue-bright text-glow">HARDER.</span>
-            <br />
-            <span className="outline-text">GO FASTER.</span>
-          </h1>
-          <p className="mt-7 max-w-xl text-lg text-muted rise">
-            Zero2Sixty builds track-validated braking hardware for drivers who
-            treat the pedal as an offensive weapon. Zero fade. Zero flex. Zero
-            compromise.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-4 rise">
-            <Link href="/shop" className="btn btn-primary">
-              Shop the Arsenal
-            </Link>
-            <Link href="/shop?c=big-brake-kits" className="btn btn-ghost">
-              Big Brake Kits →
-            </Link>
-          </div>
+      {/* Single proof line — not the big-number stat template */}
+      <div className="border-y border-line bg-bg-soft">
+        <div className="mx-auto max-w-7xl px-5 py-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted">
+          <span className="text-fg font-semibold">Engineered in-house.</span>
+          <span>
+            Track-validated across 12,000+ cars. The only acceptable amount of
+            fade is zero.
+          </span>
         </div>
-
-        {/* stat bar */}
-        <div className="relative border-y border-line bg-bg-soft/70">
-          <div className="mx-auto max-w-7xl px-5 grid grid-cols-2 md:grid-cols-4 divide-x divide-line">
-            {[
-              ["100–0", "MPH benchmark"],
-              ["326°C", "Dry boil fluid"],
-              ["0", "Fade. Period."],
-              ["12K+", "Drivers stopped"],
-            ].map(([big, small]) => (
-              <div key={small} className="px-5 py-7 text-center md:text-left">
-                <div className="font-display text-3xl md:text-4xl text-glow">
-                  {big}
-                </div>
-                <div className="text-xs uppercase tracking-widest text-muted mt-1">
-                  {small}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      </div>
 
       {/* ===== CATEGORIES ===== */}
       <section className="mx-auto max-w-7xl px-5 py-20">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anton, Inter } from "next/font/google";
+import { Anton, Archivo } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/lib/cart";
 import Navbar from "@/components/Navbar";
@@ -12,7 +12,7 @@ const display = Anton({
   display: "swap",
 });
 
-const sans = Inter({
+const sans = Archivo({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
