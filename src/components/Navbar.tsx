@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useCart } from "@/lib/cart";
+import LogoMark from "@/components/LogoMark";
 
 const LINKS = [
   { href: "/shop", label: "Shop" },
@@ -21,9 +22,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 backdrop-blur-md bg-[#050608]/85 hairline">
       <div className="mx-auto max-w-7xl px-5 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group" onClick={() => setOpen(false)}>
-          <span className="grid place-items-center w-8 h-8 bg-blue text-white font-display text-lg cut-corner group-hover:bg-blue-bright transition-colors">
-            0
-          </span>
+          <LogoMark className="w-8 h-8" />
           <span className="font-display text-xl tracking-tight">
             ZERO<span className="text-blue-bright">2</span>SIXTY
           </span>

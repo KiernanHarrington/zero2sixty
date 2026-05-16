@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LogoMark from "@/components/LogoMark";
 
 const INSTAGRAM = "https://www.instagram.com/rotorpros_braking/";
 
@@ -31,7 +32,8 @@ export default function Footer() {
 
       <div className="mx-auto max-w-7xl px-5 py-14 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-2">
-          <Link href="/" className="font-display text-2xl">
+          <Link href="/" className="group inline-flex items-center gap-2.5 font-display text-2xl">
+            <LogoMark className="w-8 h-8" />
             ZERO<span className="text-blue-bright">2</span>SIXTY
           </Link>
           <p className="mt-4 text-muted max-w-sm text-sm leading-relaxed">
