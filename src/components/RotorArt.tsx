@@ -4,6 +4,11 @@ type Props = {
   glow?: boolean;
 };
 
+/** Round to 2dp so SSR and client produce byte-identical SVG
+ *  coordinates (full-precision Math.cos/sin differs by 1 ULP
+ *  between Node and the browser and breaks hydration). */
+const r2 = (n: number) => Math.round(n * 100) / 100;
+
 /**
  * Vented, cross-drilled, slotted performance brake disc.
  * Pure SVG so the site stays self-contained — no image assets.
@@ -72,8 +77,8 @@ export default function RotorArt({ className, spin, glow }: Props) {
           return (
             <circle
               key={i}
-              cx={100 + Math.cos(a) * r}
-              cy={100 + Math.sin(a) * r}
+              cx={r2(100 + Math.cos(a) * r)}
+              cy={r2(100 + Math.sin(a) * r)}
               r="3.4"
               fill="#04060a"
               stroke="rgba(120,160,255,0.25)"
@@ -90,8 +95,8 @@ export default function RotorArt({ className, spin, glow }: Props) {
           return (
             <circle
               key={a}
-              cx={100 + Math.cos(rad) * 22}
-              cy={100 + Math.sin(rad) * 22}
+              cx={r2(100 + Math.cos(rad) * 22)}
+              cy={r2(100 + Math.sin(rad) * 22)}
               r="3.6"
               fill="#04060a"
               stroke="#2a6bd6"

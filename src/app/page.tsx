@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { CATEGORIES, PRODUCTS } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
-import RotorArt from "@/components/RotorArt";
-import Hero from "@/components/Hero";
+import ExplodedHero from "@/components/ExplodedHero";
 
 const featured = PRODUCTS.filter((p) =>
   ["apex-6-big-brake-kit", "g-slot-2pc-rotor", "rp-race-pads", "monobloc-6-caliper"].includes(
@@ -13,8 +12,8 @@ const featured = PRODUCTS.filter((p) =>
 export default function Home() {
   return (
     <>
-      {/* ===== HERO ===== */}
-      <Hero />
+      {/* ===== HERO — exploded assembly diagram (scroll-scrubbed) ===== */}
+      <ExplodedHero />
 
       {/* Single proof line — not the big-number stat template */}
       <div className="border-y border-line bg-bg-soft">
@@ -82,40 +81,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== TECH STORY ===== */}
-      <section className="mx-auto max-w-7xl px-5 py-24 grid lg:grid-cols-2 gap-14 items-center">
-        <div className="relative aspect-square max-w-md mx-auto w-full">
-          <div className="absolute inset-0 radial-fade" />
-          <RotorArt className="relative w-full h-full" spin glow />
+      {/* Tech follow-through */}
+      <section className="border-b border-line">
+        <div className="mx-auto max-w-7xl px-5 py-16 grid gap-8 sm:grid-cols-3">
+          {[
+            ["Forged monobloc calipers", "One billet. No flex under load."],
+            ["Two-piece floating rotors", "Less mass, no thermal coning."],
+            ["Race-grade friction", "Flat torque curve, cold to glowing."],
+          ].map(([t, d]) => (
+            <div key={t} className="flex gap-4">
+              <span className="mt-1.5 w-2 h-2 bg-blue rotate-45 shrink-0 glow" />
+              <div>
+                <div className="font-semibold">{t}</div>
+                <div className="text-sm text-muted">{d}</div>
+              </div>
+            </div>
+          ))}
         </div>
-        <div>
-          <p className="kicker">Engineered, not assembled</p>
-          <h2 className="headline text-4xl sm:text-5xl mt-3">
-            Built In-House.
-            <br />
-            <span className="text-blue-bright">Proven On Track.</span>
-          </h2>
-          <p className="mt-5 text-muted leading-relaxed">
-            Every rotor ring, caliper body and pad compound is spec&apos;d,
-            tested and abused by us before it ever touches your car. We
-            simulate the worst day at the track — then build for worse.
-          </p>
-          <ul className="mt-8 space-y-4">
-            {[
-              ["Forged monobloc calipers", "One billet. No flex under load."],
-              ["Two-piece floating rotors", "Less mass, no thermal coning."],
-              ["Race-grade friction", "Flat torque curve, cold to glowing."],
-            ].map(([t, d]) => (
-              <li key={t} className="flex gap-4">
-                <span className="mt-1 w-2 h-2 bg-blue rotate-45 shrink-0 glow" />
-                <div>
-                  <div className="font-semibold">{t}</div>
-                  <div className="text-sm text-muted">{d}</div>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <Link href="/about" className="btn btn-ghost mt-9">
+        <div className="mx-auto max-w-7xl px-5 pb-16">
+          <Link href="/about" className="btn btn-ghost">
             The Full Tech →
           </Link>
         </div>
