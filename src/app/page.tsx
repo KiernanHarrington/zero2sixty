@@ -107,7 +107,7 @@ export default function Home() {
 
       {/* ===== CTA ===== */}
       <section className="relative overflow-hidden border-t border-line">
-        <div className="absolute inset-0 bg-[linear-gradient(110deg,#0b3c8f,#1f6bff_55%,#0b3c8f)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(110deg,#155e74,#2596be_55%,#155e74)]" />
         <div className="absolute inset-0 grid-bg opacity-40" />
         <div className="relative mx-auto max-w-7xl px-5 py-20 text-center">
           <h2 className="headline text-4xl sm:text-6xl text-white">

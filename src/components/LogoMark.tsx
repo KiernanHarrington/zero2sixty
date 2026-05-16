@@ -10,7 +10,7 @@ const r2 = (n: number) => Math.round(n * 100) / 100;
 export default function LogoMark({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`relative grid place-items-center bg-[linear-gradient(135deg,var(--blue-bright),var(--blue)_55%,#0b3c8f)] cut-corner group-hover:brightness-110 transition-[filter] ${className}`}
+      className={`relative grid place-items-center bg-[linear-gradient(135deg,var(--blue-bright),var(--blue)_55%,#155e74)] cut-corner group-hover:brightness-110 transition-[filter] ${className}`}
     >
       <svg
         viewBox="0 0 32 32"

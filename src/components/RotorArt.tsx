@@ -29,9 +29,9 @@ export default function RotorArt({ className, spin, glow }: Props) {
           <stop offset="100%" stopColor="#070a10" />
         </radialGradient>
         <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#3d8bff" />
-          <stop offset="50%" stopColor="#1f6bff" />
-          <stop offset="100%" stopColor="#0b2f6e" />
+          <stop offset="0%" stopColor="#3bb6d9" />
+          <stop offset="50%" stopColor="#2596be" />
+          <stop offset="100%" stopColor="#0e4254" />
         </linearGradient>
         <radialGradient id="hub" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#1a2030" />
@@ -62,7 +62,7 @@ export default function RotorArt({ className, spin, glow }: Props) {
           <path
             key={a}
             d="M100 24 A76 76 0 0 1 152 56"
-            stroke="rgba(120,160,255,0.35)"
+            stroke="rgba(120,200,222,0.35)"
             strokeWidth="5"
             fill="none"
             strokeLinecap="round"
@@ -81,15 +81,15 @@ export default function RotorArt({ className, spin, glow }: Props) {
               cy={r2(100 + Math.sin(a) * r)}
               r="3.4"
               fill="#04060a"
-              stroke="rgba(120,160,255,0.25)"
+              stroke="rgba(120,200,222,0.25)"
               strokeWidth="0.8"
             />
           );
         })}
 
         {/* hat / hub */}
-        <circle cx="100" cy="100" r="34" fill="url(#hub)" stroke="#1f6bff" strokeWidth="1.5" />
-        <circle cx="100" cy="100" r="9" fill="#02040a" stroke="#3d8bff" strokeWidth="1" />
+        <circle cx="100" cy="100" r="34" fill="url(#hub)" stroke="#2596be" strokeWidth="1.5" />
+        <circle cx="100" cy="100" r="9" fill="#02040a" stroke="#3bb6d9" strokeWidth="1" />
         {[0, 72, 144, 216, 288].map((a) => {
           const rad = (a * Math.PI) / 180;
           return (
@@ -99,7 +99,7 @@ export default function RotorArt({ className, spin, glow }: Props) {
               cy={r2(100 + Math.sin(rad) * 22)}
               r="3.6"
               fill="#04060a"
-              stroke="#2a6bd6"
+              stroke="#2596be"
               strokeWidth="1"
             />
           );

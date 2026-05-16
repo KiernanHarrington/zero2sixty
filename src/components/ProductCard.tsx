@@ -7,7 +7,7 @@ import AddToCartButton from "./AddToCartButton";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="group panel cut-corner overflow-hidden flex flex-col transition-transform duration-200 hover:-translate-y-1 hover:[box-shadow:0_24px_60px_-30px_rgba(31,107,255,0.7)]">
+    <div className="group panel cut-corner overflow-hidden flex flex-col transition-transform duration-200 hover:-translate-y-1 hover:[box-shadow:0_24px_60px_-30px_rgba(37,150,190,0.7)]">
       <Link href={`/shop/${product.slug}`} className="relative block">
         <div className="relative aspect-4/3 bg-[#05070b] overflow-hidden">
           <Image
