@@ -1,18 +1,23 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Product } from "@/lib/products";
+import { productImage } from "@/lib/products";
 import { money } from "@/lib/format";
-import RotorArt from "./RotorArt";
 import AddToCartButton from "./AddToCartButton";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <div className="group panel cut-corner overflow-hidden flex flex-col transition-transform duration-200 hover:-translate-y-1 hover:[box-shadow:0_24px_60px_-30px_rgba(31,107,255,0.7)]">
       <Link href={`/shop/${product.slug}`} className="relative block">
-        <div className="aspect-[4/3] grid place-items-center bg-[radial-gradient(circle_at_50%_40%,#13192640,#050608)] overflow-hidden">
-          <RotorArt
-            className="w-[78%] h-[78%] transition-transform duration-700 group-hover:scale-110 group-hover:rotate-45"
-            glow
+        <div className="relative aspect-4/3 bg-[#05070b] overflow-hidden">
+          <Image
+            src={productImage(product)}
+            alt={product.name}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
+          <div className="absolute inset-0 bg-linear-to-t from-[#05070b]/70 via-transparent to-transparent" />
         </div>
         {product.badge && (
           <span className="absolute top-3 left-3 skew-tag bg-blue text-white text-[11px] font-bold tracking-widest px-3 py-1">

@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCart } from "@/lib/cart";
 import { money } from "@/lib/format";
+import { getProduct, productImage } from "@/lib/products";
 import RotorArt from "@/components/RotorArt";
 
 export default function CartPage() {
@@ -33,16 +35,28 @@ export default function CartPage() {
 
       <div className="grid lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 space-y-4">
-          {lines.map((l) => (
+          {lines.map((l) => {
+            const product = getProduct(l.slug);
+            return (
             <div
               key={l.slug}
               className="panel cut-corner p-4 sm:p-5 flex items-center gap-4 sm:gap-5"
             >
               <Link
                 href={`/shop/${l.slug}`}
-                className="w-20 h-20 sm:w-24 sm:h-24 shrink-0 grid place-items-center bg-[radial-gradient(circle,#13192640,#050608)]"
+                className="relative w-20 h-20 sm:w-24 sm:h-24 shrink-0 overflow-hidden bg-[#05070b]"
               >
-                <RotorArt className="w-[85%] h-[85%]" />
+                {product ? (
+                  <Image
+                    src={productImage(product)}
+                    alt={l.name}
+                    fill
+                    sizes="96px"
+                    className="object-cover"
+                  />
+                ) : (
+                  <RotorArt className="w-full h-full" />
+                )}
               </Link>
               <div className="flex-1 min-w-0">
                 <Link
@@ -80,7 +94,8 @@ export default function CartPage() {
                 {money(l.price * l.qty)}
               </div>
             </div>
-          ))}
+            );
+          })}
 
           <button
             onClick={clear}

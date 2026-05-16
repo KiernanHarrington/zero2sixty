@@ -267,6 +267,31 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
+/* Real product photography (Unsplash, free for commercial use,
+   every URL verified resolving HTTP 200 image/jpeg). */
+const U = (id: string) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1600&q=80`;
+
+const IMAGE_BY_CATEGORY: Record<Category, string> = {
+  "big-brake-kits": U("photo-1746968989993-6b3fc7b534d9"),
+  rotors: U("photo-1757910869199-c5832bd15f11"),
+  pads: U("photo-1760689033990-2462d7ab40d0"),
+  calipers: U("photo-1750492764558-1e1b8f4f211d"),
+  lines: U("photo-1774066811788-8b9ae29ae09d"),
+  fluid: U("photo-1757910869199-c5832bd15f11"),
+};
+
+// Per-product overrides so products in the same category differ.
+const IMAGE_BY_SLUG: Record<string, string> = {
+  "trackspec-4-big-brake-kit": U("photo-1750492764558-1e1b8f4f211d"),
+  "cryo-drilled-rotor": U("photo-1774066811788-8b9ae29ae09d"),
+  "sport-street-pads": U("photo-1746968989993-6b3fc7b534d9"),
+};
+
+export function productImage(p: Product): string {
+  return IMAGE_BY_SLUG[p.slug] ?? IMAGE_BY_CATEGORY[p.category];
+}
+
 export function getProduct(slug: string) {
   return PRODUCTS.find((p) => p.slug === slug);
 }

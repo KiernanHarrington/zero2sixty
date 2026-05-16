@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProduct, PRODUCTS, CATEGORIES } from "@/lib/products";
+import Image from "next/image";
+import { getProduct, PRODUCTS, CATEGORIES, productImage } from "@/lib/products";
 import { money } from "@/lib/format";
-import RotorArt from "@/components/RotorArt";
 import ProductBuy from "@/components/ProductBuy";
 import ProductCard from "@/components/ProductCard";
 
@@ -52,15 +52,21 @@ export default async function ProductPage({
 
       <div className="grid lg:grid-cols-2 gap-12">
         {/* visual */}
-        <div className="relative panel cut-corner aspect-square grid place-items-center overflow-hidden">
-          <div className="absolute inset-0 grid-bg opacity-40" />
-          <div className="absolute inset-0 radial-fade" />
+        <div className="relative panel cut-corner aspect-square overflow-hidden">
+          <Image
+            src={productImage(product)}
+            alt={product.name}
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-[#05070b]/60 via-transparent to-transparent" />
           {product.badge && (
             <span className="absolute top-5 left-5 skew-tag bg-blue text-white text-xs font-bold tracking-widest px-4 py-1.5">
               <span>{product.badge}</span>
             </span>
           )}
-          <RotorArt className="relative w-[80%] h-[80%]" spin glow />
         </div>
 
         {/* info */}
