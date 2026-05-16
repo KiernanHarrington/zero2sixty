@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CATEGORIES, PRODUCTS } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
-import ExplodedHero from "@/components/ExplodedHero";
+import Hero from "@/components/Hero";
 
 const featured = PRODUCTS.filter((p) =>
   ["apex-6-big-brake-kit", "g-slot-2pc-rotor", "rp-race-pads", "monobloc-6-caliper"].includes(
@@ -12,8 +12,8 @@ const featured = PRODUCTS.filter((p) =>
 export default function Home() {
   return (
     <>
-      {/* ===== HERO — exploded assembly diagram (scroll-scrubbed) ===== */}
-      <ExplodedHero />
+      {/* ===== HERO — static (scroll animation parked for now) ===== */}
+      <Hero />
 
       {/* Single proof line — not the big-number stat template */}
       <div className="border-y border-line bg-bg-soft">
